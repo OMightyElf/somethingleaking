@@ -1,8 +1,16 @@
+require "facebook/messenger"
+include Facebook::Messenger
+Facebook::Messenger::Subscriptions.subscribe
+
 desc "This task is called by the Heroku scheduler add-on"
-task :update_feed => :environment do
+task :send_me_a_message_so_i_know_you_are_working => :environment do
   puts "Updating feed..."
-  NewsFeed.update
-  puts "done."
+  Bot.deliver(
+    recipient: { 'id' => '1295793943798114' },
+    message: {
+      text: "hi im here"
+    }
+  )
 end
 
 task :send_reminders => :environment do
