@@ -10,7 +10,7 @@ Facebook::Messenger::Subscriptions.subscribe
 # message.attachments # => [ { 'type' => 'image', 'payload' => { 'url' => 'https://www.example.com/1.jpg' } } ]
 Bot.on :message do |message|
   Bot.deliver(
-    recipient: { 'id' => '1295793943798114' },
+    recipient: message.sender,
     message: {
       text: message.text
     }
