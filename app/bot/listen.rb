@@ -9,10 +9,19 @@ Facebook::Messenger::Subscriptions.subscribe
 # message.text        # => 'Hello, bot!'
 # message.attachments # => [ { 'type' => 'image', 'payload' => { 'url' => 'https://www.example.com/1.jpg' } } ]
 Bot.on :message do |message|
-  Bot.deliver(
-    recipient: { 'id' => '1295793943798114' },
-    message: {
-      text: message.text
-    }
-  )
+  if message == "/there?"
+    Bot.deliver(
+      recipient: { 'id' => ENV["ADELE_ID"] },
+      message: {
+        text: "still crawling!"
+      }
+    )
+  else
+    Bot.deliver(
+      recipient: { 'id' => ENV["ADELE_ID"] },
+      message: {
+        text: "did u just say #{message.text}?"
+      }
+    )
+  end
 end
