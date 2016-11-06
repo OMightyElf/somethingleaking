@@ -1,7 +1,7 @@
 desc "This task is called by the Heroku scheduler add-on"
 task :send_me_a_message_so_i_know_you_are_working => :environment do
   Facebook::Messenger::Bot.deliver(
-    recipient: { 'id' => '1295793943798114' },
+    recipient: { 'id' => ENV["ADELE_ID"] },
     message: {
       text: "yeah i'm still alive"
     }
@@ -16,7 +16,7 @@ task :crawl_page => :environment do
 
   if rows.length > 2
     Facebook::Messenger::Bot.deliver(
-      recipient: { 'id' => '1295793943798114' },
+      recipient: { 'id' => ENV["ADELE_ID"] },
       message: {
         text: "還在等什麼！！！快搶票！！！！！！！"
       }
